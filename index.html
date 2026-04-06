@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join Telegram Channel</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298, #00c6ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+.card {
+    background: white;
+    color: #333;
+    border-radius: 20px;
+    padding: 30px;
+    width: 340px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.telegram-logo {
+    width: 85px;
+    margin-bottom: 15px;
+}
+
+.badge {
+    display: inline-block;
+    background: #28a745;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 24px;
+    background: linear-gradient(45deg, #0088cc, #00c6ff);
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn.disabled {
+    background: gray;
+    pointer-events: none;
+}
+
+.countdown {
+    font-size: 18px;
+    font-weight: bold;
+    color: red;
+    margin-top: 15px;
+}
+
+.expired {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+</style>
+
+<script>
+let timeLeft = 30;
+
+let timer = setInterval(function(){
+    document.getElementById("timer").innerText = timeLeft + " sec";
+    timeLeft--;
+
+    if(timeLeft < 0){
+        clearInterval(timer);
+
+        // Disable button
+        let btn = document.getElementById("tgBtn");
+        btn.classList.add("disabled");
+        btn.innerText = "Link Expired";
+
+        // Show expired message
+        document.getElementById("expiredMsg").innerText = "❌ This link has expired. Refresh to try again.";
+    }
+
+}, 1000);
+</script>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" class="telegram-logo">
+
+<div class="badge">✔ Trusted Channel</div>
+
+<h2>Join Our Telegram</h2>
+
+<p>Exclusive content sirf limited time ke liye available hai 🚀</p>
+
+<a href="https://t.me/club911offical" target="_blank" class="btn" id="tgBtn">
+    Open in Telegram
+</a>
+
+<div class="countdown">
+⏳ Link expires in <span id="timer">30 sec</span>
+</div>
+
+<div id="expiredMsg" class="expired"></div>
+
+</div>
+
+</body>
+</html>
